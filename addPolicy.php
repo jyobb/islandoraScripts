@@ -1,34 +1,18 @@
 #!/usr/bin/php -q
 
+<?php
+
 /**
  * This script is used to bulk add a XACML policy to a collection and water mark
  * the JPEG derivative.
  * The XCAML policy needs to be given as an arguement
  * Please excuse the crap coding it was meant to be a one off for my eyes only :)
+ *
+ * The code needs to be modified to add the path to the watermark
+ * The code needs to be modified to add the collection
  */
 
-<?php
-  /*The tuque api needs to be available in this directory*/
-require_once 'tuque/HttpConnection.php';
-require_once 'tuque/FedoraApi.php';
-require_once 'tuque/Repository.php';
-require_once 'tuque/RepositoryConnection.php';
-require_once 'tuque/Object.php';
-require_once 'tuque/Cache.php';
-require_once 'tuque/FedoraApiSerializer.php';
-
-
-/**
- * Make a connection to the repository 
- */
-$fedoraUrl = "http://islandora.usask.ca:8080/fedora";
-$username = "******";
-$password = "******";
-$connection = new RepositoryConnection($fedoraUrl, $username, $password);
-$connection->reuseConnection = TRUE;
-$repository = new FedoraRepository(
-       new FedoraApi($connection),
-    new SimpleCache());
+require_once './connection.php';
 
 /**
  *This section is where I grab the list of pids from a collection using itql query
